@@ -1,13 +1,8 @@
 
 
 
-<b>A ecosystem where test takers can remotely write their exam through our webapp with the ability to evaluate the answer scripts using the NLP techniques</b>
-
-# Project Demo
-
-
-[![Watch the video](https://github.com/pollucheck/parabola/blob/main/imgs/b.png)](https://youtu.be/PAuNJQbOJOY )
-####                                Click on the image above to watch the demo
+<b>Our application is one stop solution for test takers to remotely write their exams and analyze the answers using natural language processing and also proctor them while attempting using AI.</b>
+ 
 
 # Instructions to run application:
 
@@ -33,6 +28,10 @@ As a result of the Coronavirus pandemic, many of us are working or learning at h
 
 # Tech stack and Modules used: 
             Django , HTML5 , CSS , JavaScript ,TensorFlow OpenCV
+
+# Evaluation of answers
+
+We take a average of highest similarity scores attained by every line in student answer with that if teacher answer and call it semantic score. Then we take an IOU of important phrases in student and teacher answer and call this score the syntactic score. Now we consider a weighted average of the semantic and syntactic scores as the final score attained by a student. The weightage is more to the semantic and less to the syntactic evaluation
 
 # Implementing AI based monitoring processes:
 
