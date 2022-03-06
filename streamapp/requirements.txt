@@ -1,0 +1,8 @@
+sentence-transformers
+textblob
+symspellpy
+tqdm
+flask
+dill
+fuzzywuzzy
+#neuralcoref

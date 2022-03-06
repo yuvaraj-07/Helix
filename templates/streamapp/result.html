@@ -1,0 +1,1045 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+    />
+    <script src=
+	"https://smtpjs.com/v3/smtp.js">
+</script>
+<script type="text/javascript">
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Basic dGVzdF8xMzkxZTI5M2Q1MzE0ZWQ5NzRkN2E5ZjRjZTRjNzQzOWIwMzo=");
+myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+var ou=JSON.stringify({"name": "Yuvi","total": 48,"wrong": 5,"correct": 4,"trust":"{{tust_score}}"});
+var urlencoded = new URLSearchParams();
+urlencoded.append("height", "11");
+urlencoded.append("width", "8.5");
+urlencoded.append("save_data", "true");
+urlencoded.append("merge_variables", ou);
+urlencoded.append("data", "{\n    \"product\": \"Letter\",\n    \"size\": \"us_letter\",\n    \"bleed\": false\n  }");
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: urlencoded,
+  redirect: 'follow'
+};
+var dat;
+fetch("https://api.lob.com/v1/templates/tmpl_5b730dca9fb2f39/preview", requestOptions)
+  .then(response => response.text())
+  .then(result => myFunc(result))
+  .catch(error => console.log('error', error));
+  
+function myFunc(success) {
+    var s=JSON.parse(success)
+    var s1=s["url"]
+    Email.send({
+		Host: "smtp.gmail.com",
+		Username: "tankalayuvaraj7@gmail.com",
+		Password: "jayqmglnhxlufjep",
+		To: 'yuvarajcoder@gmail.com',
+		From: "tankalayuvaraj7@gmail.com",
+		Subject: "Report For the assessment taken",
+		Body: "Dear Raj ,\n Your Assement score was generated please click on the below link\n"+s1,
+	})
+    console.log("Dear Raj ,\n\n Your Assement score was generated please click on the below link \n\n"+s1)
+}
+ 
+</script>
+    <!-- <link rel="stylesheet" href="css/style.min.css" /> -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600;700;800&display=swap");
+      .login-screen {
+        height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .login-screen .main-card {
+        width: 400px;
+      }
+      .login-screen .main-card h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .login-screen .main-card button {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      .radio-options .radio {
+        margin: 16px 0;
+        display: block;
+        cursor: pointer;
+      }
+      .radio-options .radio input {
+        display: none;
+      }
+      .radio-options .radio input + span {
+        line-height: 22px;
+        height: 22px;
+        padding-left: 22px;
+        display: block;
+        position: relative;
+      }
+      .radio-options .radio input + span:not(:empty) {
+        padding-left: 30px;
+      }
+      .radio-options .radio input + span:before,
+      .radio-options .radio input + span:after {
+        content: "";
+        width: 22px;
+        height: 22px;
+        display: block;
+        border-radius: 50%;
+        left: 0;
+        top: 0;
+        position: absolute;
+      }
+      .radio-options .radio input + span:before {
+        background: #d1d7e3;
+        -webkit-transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2),
+          -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+      }
+      .radio-options .radio input + span:after {
+        background: #fff;
+        -webkit-transform: scale(0.78);
+        transform: scale(0.78);
+        -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4),
+          -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+      }
+      .radio-options .radio input:checked + span:before {
+        -webkit-transform: scale(1.04);
+        transform: scale(1.04);
+        background: #1976d2;
+      }
+      .radio-options .radio input:checked + span:after {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        -webkit-transition: -webkit-transform 0.3s ease;
+        transition: -webkit-transform 0.3s ease;
+        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+      }
+      .radio-options .radio:hover input + span:before {
+        -webkit-transform: scale(0.92);
+        transform: scale(0.92);
+      }
+      .radio-options .radio:hover input + span:after {
+        -webkit-transform: scale(0.74);
+        transform: scale(0.74);
+      }
+      .radio-options .radio:hover input:checked + span:after {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+      }
+      .dashboard {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .dashboard .right {
+        width: 92%;
+        margin-top: 15px;
+        padding-left: 40px;
+        color: #000;
+      }
+      .dashboard .right .welcome-card {
+        position: relative;
+        width: 600px;
+        margin-top: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .dashboard .right .welcome-card h1 {
+        font-size: 3rem;
+      }
+      .dashboard .right .welcome-card p {
+        font-weight: 500;
+        font-size: 1.3rem;
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .dashboard .right .welcome-card img {
+        position: absolute;
+        right: 30px;
+        top: -30px;
+        height: 170px;
+      }
+      .dashboard .right .search-box {
+        padding-top: 50px;
+        margin-left: 30px;
+      }
+      .dashboard .right .search-box > img {
+        margin-top: 30px;
+      }
+      .dashboard .right .search-box .d-flex {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .search-box .search-bar {
+        width: 400px;
+        background-color: #f3f3f3;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+      .dashboard .right .exams-list {
+        margin-top: 50px;
+      }
+      .dashboard .right .exams-list h3 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+      .dashboard .right .exams-list .list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .exams-list .list img:first-child {
+        margin-right: 40px;
+      }
+      .dashboard .right .exams-list .list .exam-card {
+        width: 230px;
+        padding: 20px;
+        margin-right: 40px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name img {
+        height: 35px;
+        margin-right: 10px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name p {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat img {
+        height: 20px;
+        margin-right: 10px;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat p {
+        font-weight: 500;
+      }
+      .dashboard .right .exams-list .list .exam-card button {
+        margin-top: 15px;
+        padding: 4px 15px;
+      }
+      .exam-main {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .exam-main .camera-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main .camera-overlay .camera-window {
+        width: 600px;
+        height: 450px;
+        padding: 15px 25px;
+      }
+      .exam-main .camera-overlay .camera-window .top {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      .exam-main .camera-overlay .camera-window .top h3 {
+        font-size: 1.5rem;
+      }
+      .exam-main .camera-overlay .camera-window .top button.close {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        padding: 4px 11px 0 11px;
+        background-color: #d8d8d8;
+      }
+      .exam-main .camera-overlay .camera-window .top button.close img {
+        height: 14px;
+      }
+      .exam-main .camera-overlay .camera-window .top button.close:hover {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      .exam-main .camera-overlay .camera-window > img {
+        margin-top: 20px;
+        width: 100%;
+        height: calc(100% - 70px);
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: top;
+        object-position: top;
+        border-radius: 7px;
+      }
+      .exam-main #submit-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main #submit-overlay .submit-window {
+        width: 400px;
+        padding: 50px 25px;
+        -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main #submit-overlay .submit-window h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0px;
+      }
+      .exam-main #submit-overlay .submit-window button {
+        margin-top: 30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main #submit-overlay .submit-window button p {
+        margin-right: 10px;
+      }
+      .exam-main > .right {
+        height: 100vh;
+        width: 100%;
+        margin: 15px 20px 0 5px;
+      }
+      .exam-main > .right .top-bar {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 20px 25px;
+      }
+      .exam-main > .right .top-bar .exam-info,
+      .exam-main > .right .top-bar .time-left {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main > .right .top-bar .exam-info img,
+      .exam-main > .right .top-bar .time-left img {
+        height: 30px;
+      }
+      .exam-main > .right .top-bar .exam-info {
+        margin-right: 60px;
+        margin: -10px;
+        padding-top: 3px;
+      }
+      .exam-main > .right .top-bar .exam-info h3 {
+        font-size: 1.5rem;
+        margin-left: 10px;
+      }
+      .exam-main > .right .bottom-container {
+        height: calc(100% - 125px);
+        width: 100%;
+        margin-top: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .exam-main > .right .bottom-container .left {
+        height: 100%;
+        width: 75%;
+        margin-right: 25px;
+      }
+      .exam-main > .right .bottom-container .left .question-info {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 15px 10px 15px 25px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        color: #838383;
+      }
+      .exam-main > .right .bottom-container .left .question-info .btn-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .exam-main > .right .bottom-container .left .question-info .btn-container .btn {
+        height: 40px;
+        width: 40px;
+        margin: 0 5px;
+        font-size: 22px;
+        color: #7a7a7a;
+        border-radius: 5px;
+        padding: 5px;
+        padding-top: 7px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        cursor: pointer;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+      }
+      .exam-main > .right .bottom-container .left .question-info .btn-container .btn:hover {
+        background-color: #dadada;
+      }
+      .exam-main > .right .bottom-container .left .question-card {
+        height: calc(100% - 85px);
+        width: 100%;
+        margin-top: 20px;
+        padding: 30px 35px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      .exam-main > .right .bottom-container .left .question-card h3 {
+        color: #3b3b3b;
+      }
+      .exam-main > .right .bottom-container .left .question-card textarea {
+        resize: none;
+        margin-top: 30px;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button {
+        width: 120px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #dadada;
+        color: #5f5f5f;
+        font-weight: 600;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button p {
+        padding-top: 1px;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button i {
+        margin-bottom: 1px;
+        font-weight: 700;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button:first-child {
+        margin-right: 15px;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button:first-child p {
+        margin-left: 8px;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container .d-flex button:last-child p {
+        margin-right: 8px;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container > button {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main > .right .bottom-container .left .question-card .btn-container > button i {
+        font-weight: 100;
+      }
+      .exam-main > .right .bottom-container .right {
+        width: 25%;
+        height: 100%;
+        position: relative;
+      }
+      .exam-main > .right .bottom-container .right .questions {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-top: 15px;
+      }
+      .exam-main > .right .bottom-container .right .box {
+        height: 35px;
+        width: 35px;
+        background-color: #e2e2e2;
+        margin: 7px;
+        padding-top: 5px;
+        text-align: center;
+        font-weight: 700;
+        border-radius: 5px;
+        cursor: pointer;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+      }
+      .exam-main > .right .bottom-container .right .box:hover {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+      }
+      .exam-main > .right .bottom-container .right .box.active {
+        background-color: #1976d2;
+        color: #fff;
+      }
+      .exam-main > .right .bottom-container .right .box.answered {
+        background-color: #32af5e;
+        color: #fff;
+      }
+      .exam-main > .right .bottom-container .right .box.marked {
+        border: 3px solid #1976d2;
+        padding-top: 2px;
+        background-color: transparent;
+      }
+      .exam-main > .right .bottom-container .right .box.wrong {
+        background-color: #e74242;
+        color: #fff;
+      }
+      .exam-main > .right .bottom-container .right .legend {
+        margin-top: 40px;
+      }
+      .exam-main > .right .bottom-container .right .legend .stat {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: 13px 0;
+      }
+      .exam-main > .right .bottom-container .right .legend .stat .box {
+        margin: 0 10px 0 0;
+      }
+      .exam-main > .right .bottom-container .right .legend .stat p {
+        font-weight: 500;
+      }
+      .exam-main > .right .bottom-container .right .chat {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .exam-main > .right .bottom-container .right .chat i {
+        color: #1976d2;
+        font-size: 27px;
+        margin-right: 10px;
+      }
+      .result-page > .right .bottom-container .left .question-card {
+        margin: 0;
+        height: 100%;
+      }
+      .result-page > .right .bottom-container .left .question-card .chart-container {
+        height: 100%;
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .result-page > .right .bottom-container .left .question-card .chart-container .chart-wrapper {
+        height: 100%;
+        width: 50%;
+        max-width: 400px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .result-page > .right .bottom-container .left .question-card .chart-container .chart-wrapper .score-box {
+        width: 150px;
+        margin-top: 30px;
+        background-color: #e2e2e2;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .result-page > .right .bottom-container .left .question-card .chart-container .chart-wrapper .score-box p {
+        color: #4b4b4b;
+        font-weight: 900;
+        font-size: 3rem;
+      }
+      .result-page > .right .bottom-container .left .question-card .answer-score {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #636363;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Baloo Bhai 2", cursive;
+      }
+      .d-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .card {
+        width: -webkit-min-content;
+        width: -moz-min-content;
+        width: min-content;
+        background-color: #f3f3f3;
+        padding: 20px 25px;
+        border-radius: 10px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        border: none;
+        outline: none;
+        margin: 10px 0;
+        border: 2px solid #d8d8d8;
+        background-color: #fff;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-family: "Baloo Bhai 2", cursive;
+        -webkit-transition: all 300ms;
+        transition: all 300ms;
+      }
+      input:focus,
+      textarea:focus {
+        border: 2px solid #1976d2;
+      }
+      button {
+        padding: 7px 20px;
+        border: none;
+        outline: none;
+        background-color: #1976d2;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 1.1rem;
+        font-family: "Baloo Bhai 2", cursive;
+        font-weight: 500;
+        -webkit-transition: all 300ms;
+        transition: all 300ms;
+        cursor: pointer;
+        -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      }
+      button.fw {
+        width: 100% !important;
+      }
+      button:hover {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+      }
+      button:active {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+      }
+      .side-bar {
+        height: 96vh;
+        width: 70px;
+        margin: 15px;
+        background-color: #1976d2;
+        border-radius: 15px;
+        padding-bottom: 7px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 3rem;
+      }
+      .side-bar .icons-list {
+        margin-top: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .side-bar .icons-list img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .side-bar .icons-list img:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .side-bar img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .side-bar img:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="exam-main result-page">
+      <div class="side-bar">
+        <div>
+          <div class="logo">P</div>
+          <div class="icons-list">
+            
+            <img src=" {% static 'assets/img/home.png' %}  " alt="" />
+            <img src=" {% static 'assets/img/cap.png' %}  " alt="" />
+            <img src=" {% static 'assets/img/user.png' %}  " alt="" />
+            <img src=" {% static 'assets/img/settings.png' %}  " alt="" />
+          </div>
+        </div>
+        <img src="{% static 'assets/img/logout.png' %} " alt="" />
+      </div>
+
+      <div class="right">
+        <div class="top-bar card">
+          <div>
+            <h3>Mid Term 2</h3>
+          </div>
+          <div class="exam-info">
+            <img src=" {% static 'assets/img/helmet.png' %}  " alt="" />
+            <h3>History</h3>
+          </div>
+          <div class="time-left">
+            <img src=" {% static 'assets/img/stopwatch.png' %}  " alt="" />
+            <h3>&nbsp; 1h 29m</h3>
+          </div>
+        </div>
+
+        <div class="bottom-container">
+          <div class="left">
+            <div class="question-card card">
+              <div id="question-wrapper">
+                <div class="chart-container">
+                  <div class="chart-wrapper">
+                    <div id="chart1"></div>
+                    <div class="score-box card">
+                      <p>86%</p>
+                      <h3>Final Score</h3>
+                    </div>
+                  </div>
+                  <div class="chart-wrapper">
+                    <div id="chart2"></div>
+                    <div class="score-box card">
+                      <p>{{ tust_score }}</p>
+                      <h3>Trust Score</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-container">
+                <div class="d-flex">
+                  <button id="previous-result-btn">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <p>Previous</p>
+                  </button>
+                  <button id="next-result-btn">
+                    <p>Next</p>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right card">
+            <h3>Attempt Summary</h3>
+            <div class="questions">
+              <div class="box answered">1</div>
+              <div class="box answered">2</div>
+              <div class="box wrong">3</div>
+              <div class="box answered">4</div>
+              <div class="box wrong">5</div>
+              <div class="box">6</div>
+              <div class="box">7</div>
+              <div class="box">8</div>
+              <div class="box">9</div>
+              <div class="box">10</div>
+            </div>
+            <div class="legend">
+              <div class="stat">
+                <div class="box answered">0</div>
+                <p>Correct Answer</p>
+              </div>
+              <div class="stat">
+                <div class="box wrong">0</div>
+                <p>Wrong Answer</p>
+              </div>
+              <div class="stat">
+                <div class="box">0</div>
+                <p>Not Answered</p>
+              </div>
+            </div>
+
+            <!-- <div class="chat">
+              <i class="fa fa-comments-o" aria-hidden="true"></i>
+              <p>Chat with proctor</p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <script src="https://use.fontawesome.com/fef309a451.js"></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- <script src="script.js"></script> -->
+
+  <script>
+    let currentAnswer = 0;
+
+    let answerList = [
+      {
+        questionNumber: 1,
+        questionText: "When will animals undergo hibernation",
+        type: "long",
+        userAnswer: "",
+        score: "2",
+      }
+    ];
+
+    updateAnswer(answerList[currentAnswer - 1]);
+
+    // Chart stuff
+
+    let chartState = true;
+
+    let chartConfig = {
+      chart: {
+        type: "donut",
+        height: "auto",
+      },
+      legend: {
+        position: "bottom",
+        fontWeight: 600,
+      },
+    };
+
+    var chart1 = {
+      series: [55, 41, 17],
+      colors: ["#32af5e", "#e74242", "#a5a5a5"],
+      labels: ["Correct Answers", "Wrong Answers", "Not Answered"],
+      ...chartConfig,
+    };
+   
+    var pol=JSON.parse("{{trust}}")
+    console.log("111",typeof(pol))
+    var chart2 = {
+      series: pol,
+      labels: ['Number of Times Mouth Opened','Number of Times Head Up','Number of Times Head Down','Number of Times Head Left','Number of Times Head Right','Number of Times Left the Test'],
+      ...chartConfig,
+    };
+
+    if (chartState) {
+      var chartOne = new ApexCharts(document.querySelector("#chart1"), chart1);
+      chartOne.render();
+
+      var chartTwo = new ApexCharts(document.querySelector("#chart2"), chart2);
+      chartTwo.render();
+    }
+
+    // main
+    console.log("bleh");
+
+    document.getElementById("previous-result-btn").addEventListener("click", () => {
+      console.log(currentAnswer);
+      if (currentAnswer > 0) {
+        currentAnswer -= 1;
+      }
+
+      chartState = false;
+      updateAnswer(answerList[currentAnswer - 1]);
+    });
+
+    document.getElementById("next-result-btn").addEventListener("click", () => {
+      console.log(currentAnswer);
+      if (currentAnswer < 5) {
+        currentAnswer += 1;
+      }
+
+      chartState = false;
+      updateAnswer(answerList[currentAnswer - 1]);
+    });
+
+    function updateAnswer(questionData) {
+      if (currentAnswer === 0) {
+        // document.getElementById("question-wrapper").innerHTML = `
+        //   <div class="chart-container">
+        //     <div class="chart-wrapper">
+        //       <div id="chart1"></div>
+        //       <div class="score-box">
+        //       </div>
+        //     </div>
+        //     <div class="chart-wrapper">
+        //       <div id="chart2"></div>
+        //       <div class="score-box"></div>
+        //     </div>
+        //   </div>
+        //   `;
+      } else {
+        if (questionData.type === "mcq") {
+          document.getElementById("question-wrapper").innerHTML = `
+        <h3 class="question-text">${questionData.questionText}</h3>
+        <form id="mcqForm" class="radio-options">
+          <label class="radio">
+            <input type="radio" name="r" value="1" />
+            <span>${questionData.options[0]}</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="r" value="2" />
+            <span>${questionData.options[1]}</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="r" value="3" />
+            <span>${questionData.options[2]}</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="r" value="4" />
+            <span>${questionData.options[3]}</span>
+          </label>
+        </form>
+        <p class="answer-score">Correct Answer: Option D - Darth Bane</p>
+        `;
+        } else if (questionData.type === "long") {
+          document.getElementById("question-wrapper").innerHTML = `
+        <h3 class="question-text">${questionData.questionText}</h3>
+        <textarea name="" id="" cols="30" rows="10">{{ student_ans }}</textarea>
+        <p class="answer-score">Score: {{ mark }}</p>
+        `;
+        }
+      }
+    }
+  </script>
+</html>

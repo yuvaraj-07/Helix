@@ -1,0 +1,520 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- <link rel="stylesheet" href="css/style.min.css" /> -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600;700;800&display=swap");
+      .login-screen {
+        height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .login-screen .main-card {
+        width: 400px;
+      }
+      .login-screen .main-card h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .login-screen .main-card button {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      .radio-options .radio {
+        margin: 16px 0;
+        display: block;
+        cursor: pointer;
+      }
+      .radio-options .radio input {
+        display: none;
+      }
+      .radio-options .radio input + span {
+        line-height: 22px;
+        height: 22px;
+        padding-left: 22px;
+        display: block;
+        position: relative;
+      }
+      .radio-options .radio input + span:not(:empty) {
+        padding-left: 30px;
+      }
+      .radio-options .radio input + span:before,
+      .radio-options .radio input + span:after {
+        content: "";
+        width: 22px;
+        height: 22px;
+        display: block;
+        border-radius: 50%;
+        left: 0;
+        top: 0;
+        position: absolute;
+      }
+      .radio-options .radio input + span:before {
+        background: #d1d7e3;
+        -webkit-transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+        transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2),
+          -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+      }
+      .radio-options .radio input + span:after {
+        background: #fff;
+        -webkit-transform: scale(0.78);
+        transform: scale(0.78);
+        -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4),
+          -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+      }
+      .radio-options .radio input:checked + span:before {
+        -webkit-transform: scale(1.04);
+        transform: scale(1.04);
+        background: #1976d2;
+      }
+      .radio-options .radio input:checked + span:after {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        -webkit-transition: -webkit-transform 0.3s ease;
+        transition: -webkit-transform 0.3s ease;
+        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+      }
+      .radio-options .radio:hover input + span:before {
+        -webkit-transform: scale(0.92);
+        transform: scale(0.92);
+      }
+      .radio-options .radio:hover input + span:after {
+        -webkit-transform: scale(0.74);
+        transform: scale(0.74);
+      }
+      .radio-options .radio:hover input:checked + span:after {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+      }
+      .dashboard {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .dashboard .right {
+        width: 92%;
+        margin-top: 15px;
+        padding-left: 40px;
+        color: #000;
+      }
+      .dashboard .right .welcome-card {
+        position: relative;
+        width: 600px;
+        margin-top: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .dashboard .right .welcome-card h1 {
+        font-size: 3rem;
+      }
+      .dashboard .right .welcome-card p {
+        font-weight: 500;
+        font-size: 1.3rem;
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .dashboard .right .welcome-card img {
+        position: absolute;
+        right: 30px;
+        top: -30px;
+        height: 170px;
+      }
+      .dashboard .right .search-box {
+        padding-top: 50px;
+        margin-left: 30px;
+      }
+      .dashboard .right .search-box > img {
+        margin-top: 30px;
+      }
+      .dashboard .right .search-box .d-flex {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .search-box .search-bar {
+        width: 400px;
+        background-color: #f3f3f3;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+      .dashboard .right .exams-list {
+        margin-top: 50px;
+      }
+      .dashboard .right .exams-list h3 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+      .dashboard .right .exams-list .list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .exams-list .list img:first-child {
+        margin-right: 40px;
+      }
+      .dashboard .right .exams-list .list .exam-card {
+        width: 230px;
+        padding: 20px;
+        margin-right: 40px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name img {
+        height: 35px;
+        margin-right: 10px;
+      }
+      .dashboard .right .exams-list .list .exam-card .subject-name p {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat img {
+        height: 20px;
+        margin-right: 10px;
+      }
+      .dashboard .right .exams-list .list .exam-card .stat p {
+        font-weight: 500;
+      }
+      .dashboard .right .exams-list .list .exam-card button {
+        margin-top: 15px;
+        padding: 4px 15px;
+      }
+      .exam-main {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .exam-main .right {
+        width: 100%;
+        margin-right: 20px;
+        margin-top: 15px;
+      }
+      .exam-main .right .top-bar {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 20px 25px;
+      }
+      .exam-main .right .top-bar .exam-info,
+      .exam-main .right .top-bar .time-left {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .exam-main .right .top-bar .exam-info img,
+      .exam-main .right .top-bar .time-left img {
+        height: 30px;
+      }
+      .exam-main .right .top-bar .exam-info h3:first-child {
+        margin-right: 10px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Baloo Bhai 2", cursive;
+      }
+      .d-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .card {
+        width: -webkit-min-content;
+        width: -moz-min-content;
+        width: min-content;
+        background-color: #f3f3f3;
+        padding: 30px;
+        border-radius: 10px;
+      }
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        margin: 10px 0;
+        border: 2px solid #d8d8d8;
+        background-color: #fff;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-family: "Baloo Bhai 2", cursive;
+        -webkit-transition: all 300ms;
+        transition: all 300ms;
+      }
+      input:focus {
+        border: 2px solid #1976d2;
+      }
+      button {
+        padding: 7px 20px;
+        border: none;
+        outline: none;
+        background-color: #1976d2;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 1.1rem;
+        font-family: "Baloo Bhai 2", cursive;
+        font-weight: 500;
+        -webkit-transition: all 300ms;
+        transition: all 300ms;
+        cursor: pointer;
+      }
+      button.fw {
+        width: 100% !important;
+      }
+      button:hover {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+      }
+      button:active {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+      }
+      .side-bar {
+        height: 96vh;
+        width: 70px;
+        margin: 15px;
+        background-color: #1976d2;
+        border-radius: 15px;
+        padding-bottom: 7px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 3rem;
+      }
+      .side-bar .icons-list {
+        margin-top: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .side-bar .icons-list img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .side-bar .icons-list img:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .side-bar img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .side-bar img:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="dashboard">
+      <div class="side-bar">
+        <div>
+          <div class="logo">P</div>
+          <div class="icons-list">
+            <img src="{% static 'assets/img/home.png' %}" alt="" />
+            <img src="{% static 'assets/img/cap.png' %}" alt="" />
+            <img src="{% static 'assets/img/user.png' %}" alt="" />
+            <img src="{% static 'assets/img/settings.png' %}" alt="" />
+          </div>
+        </div>
+        <img src="{% static 'assets/img/logout.png' %}" alt="" />
+      </div>
+
+      <div class="right">
+        <div class="d-flex">
+          <div class="welcome-card card">
+            <div>
+              <h1>Hello Raj!</h1>
+              <p>It’s good to see you again.</p>
+            </div>
+            <img src="{% static 'assets/img/human-blue.png' %}" alt="" />
+          </div>
+
+          <div class="search-box">
+            <div class="d-flex">
+              <div class="search-bar">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+             
+              <img src="{% static 'assets/img/bell.png' %}" style="margin-left: 15px" alt="" />
+              <!-- <div class="user">
+                <img src="img/profile.png" alt="" />
+              </div> -->
+            </div>
+
+            <img src="{% static 'assets/img/stats.png' %}" alt="" />
+          </div>
+        </div>
+
+        <div class="exams-list">
+          <h3>Upcoming exams</h3>
+          <div class="list">
+            <img src="{% static 'assets/img/left-arrow.png' %}" alt="" />
+
+            <div class="exam-card card">
+              <div class="subject-name">
+                <img src="{% static 'assets/img/helmet.png' %}" alt="" />
+                <p class="sub">History</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/clock.png' %}" alt="" />
+                <p>1h 30m</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/date.png' %}" alt="" />
+                <p>Today, 12:30 PM</p>
+              </div>
+              <form action='quiz' method='post'> {% csrf_token %}
+              <button type="submit" class="fw">Go to Exam</button>
+              </form>
+            </div>
+
+            <div class="exam-card card">
+              <div class="subject-name">
+                <img src="{% static 'assets/img/statis.png' %}" alt="" />
+                <p class="sub">Statistics</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/clock.png' %}" alt="" />
+                <p>3h 00m</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/date.png' %}" alt="" />
+                <p>Tomorrow, 5:00 PM</p>
+              </div>
+
+              <button class="fw">View details</button>
+            </div>
+
+            <div class="exam-card card">
+              <div class="subject-name">
+                <img src="{% static 'assets/img/database.png'%}" alt="" />
+                <p class="sub">Databases</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/clock.png'%}" alt="" />
+                <p>2h 30m</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static 'assets/img/date.png' %}" alt="" />
+                <p>24th June, 10:30 AM</p>
+              </div>
+
+              <button class="fw">View details</button>
+            </div>
+
+            <div class="exam-card card">
+              <div class="subject-name">
+                <img src="{% static  'assets/img/atom.png' %}" alt="" />
+                <p class="sub">Chemistry</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static  'assets/img/clock.png' %}" alt="" />
+                <p>3h 10m</p>
+              </div>
+
+              <div class="stat">
+                <img src="{% static  'assets/img/date.png' %}" alt="" />
+                <p>28th June, 11:30 AM</p>
+              </div>
+
+              <button class="fw">View details</button>
+            </div>
+
+            <img src="{% static  'assets/img/right-arrow.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+</html>
