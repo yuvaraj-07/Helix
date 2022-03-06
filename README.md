@@ -13,14 +13,12 @@
            pip install -r requirements.txt.
 
       3. To run this project, Open command prompt type 
-
-      4. cd Psedo
  
-      5. Type python manage.py migrate and then python manage.py runserver
+      4. Type python manage.py migrate and then python manage.py runserver
       
-      6. You Can See The Website Live in  http://127.0.0.1:8000/
+      5. You Can See The Website Live in  http://127.0.0.1:8000/
       
-      7. Create a new account at the sign up page and avail the services.
+      6. Create a new account at the sign up page and avail the services.
          
 # Motivation for the project:
 
